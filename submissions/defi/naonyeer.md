@@ -1,108 +1,107 @@
-vApp Submission: LP Streak Attest
-Verification
+Here’s your **corrected English version**, polished for clarity but still concise and professional. This is ready to be used in your PR file `submissions/defi/naonyeer.md`:
 
-github_username: naonyeer
+---
 
-discord_id: 458584863885230083
+# vApp Submission: LP Streak Attest
 
-timestamp: 2025-08-29
+## Verification
 
-Developer
+* **github\_username:** naonyeer
+* **discord\_id:** 458584863885230083
+* **timestamp:** 2025-08-29
 
-Name: naonyeer
+## Developer
 
-GitHub: @naonyeer
+* **Name:** naonyeer
+* **GitHub:** @naonyeer
+* **Discord:** @deezeth
+* **Experience:** DeFi user & testnet grinder; experienced in building bots, task automations, wallet integrations, and simple dashboards.
 
-Discord: @deezeth
+---
 
-Experience: DeFi user & testnet grinder; biasa bikin bot/task automations, integrasi wallet, dan simple dashboards.
+## Project
 
-Project
-Name & Category
+### Name & Category
 
-Project: LP Streak Attest
+* **Project:** LP Streak Attest
+* **Category:** DeFi
 
-Category: defi
+### Description
 
-Description
+**Problem:** Many DeFi programs want to incentivize liquidity providers who contribute consistently (not just “hit-and-run”), but proving consistency across protocols and chains without exposing sensitive data is difficult.
 
-Problem: Banyak program DeFi ingin memberi insentif ke liquidity provider yang konsisten (bukan hit-and-run), tapi sulit membuktikan “konsistensi” lintas protokol/chain tanpa minta data sensitif.
-What it does: LP Streak Attest membuat attestation terverifikasi bahwa suatu wallet menjaga posisi LP ≥ N hari berturut-turut atau ≥ ambang minimum. Attestation ini portable—bisa dipakai protokol lain untuk fee-rebate, allowlist, atau bonus rewards—tanpa membocorkan jumlah LP tepatnya.
+**Solution:** LP Streak Attest issues verifiable attestations proving that a wallet has maintained an LP position for ≥ N consecutive days or above a certain threshold. These attestations are portable and can be used by other protocols for fee rebates, allowlists, or bonus rewards—without revealing the exact LP amount.
 
-SL Integration
+---
 
-Attestations: Terbitkan verifiable attestations berisi “LP ≥ threshold” + “durasi streak (hari/minggu)”.
+## SL Integration
 
-Proofs: Mulai dari bukti deterministik berbasis snapshot; rencana upgrade ke threshold/range proof (membuktikan ≥ X tanpa nilai spesifik) saat primitif ZK/SL yang relevan tersedia.
+* **Attestations:** Issue verifiable attestations containing “LP ≥ threshold” + “streak duration (days/weeks)”.
+* **Proofs:** Start with deterministic snapshot proofs; plan to upgrade to threshold/range proofs (proving ≥ X without revealing the exact value) once ZK/SL primitives are available.
+* **Verification:** Third-party dApps call the verifier (via SDK/CLI) to validate attestations before granting incentives.
 
-Verification: dApps pihak ketiga memanggil verifier (SDK/CLI SL) untuk mengecek keabsahan attestation sebelum memberi insentif.
+---
 
-Technical
-Architecture (high level)
+## Technical
 
-Indexer Worker: baca posisi LP dari subgraph/RPC (mis. Uniswap-v2/v3 style) pada interval terjadwal → hitung streak & threshold.
+### Architecture (high level)
 
-Attestation Service: ketika syarat terpenuhi, generate dan sign SL attestation untuk wallet.
+1. **Indexer Worker**: Reads LP positions from subgraphs/RPCs (e.g., Uniswap v2/v3) on a scheduled interval → calculates streaks & thresholds.
+2. **Attestation Service**: Generates and signs SL attestations when conditions are met.
+3. **Verifier API / SDK**: Lightweight endpoint for dApps to verify attestations through the Soundness Layer.
+4. **Web Dashboard**: Wallet connection to track streak progress, request attestations, and export/claim at partner protocols.
 
-Verifier API / SDK: endpoint ringan untuk dApps memverifikasi attestation via Soundness Layer.
+### Stack
 
-Web App (Dashboard): konek wallet → lihat progres streak, minta attestation, dan ekspor/claim di protokol partner.
+* **Frontend:** React + Wagmi/Viem
+* **Backend:** Node.js (TypeScript)
+* **Blockchain:** EVM testnets (Sepolia / OP-Sepolia) + Soundness Layer
+* **Storage:** Postgres (for caching); metadata optionally stored on IPFS/WALRUS
 
-Stack
+### Features
 
-Frontend: React + Wagmi/Viem
+* **F1. Streak Tracker:** Tracks daily/weekly LP streaks per pool.
+* **F2. Threshold Attestation:** Issues attestations like “LP ≥ X for Y days.”
+* **F3. Partner Verifier:** Lightweight library for protocols to verify attestations and grant incentives (rebates, allowlists, bonuses).
 
-Backend: Node.js (TypeScript)
+---
 
-Blockchain: EVM testnet (Sepolia/OP-Sepolia) + Soundness Layer
+## Timeline
 
-Storage: Postgres (ringan) untuk cache; metadata attestation ke IPFS/WALRUS bila perlu
+### PoC (2–4 weeks)
 
-Features
+* Integrate LP position tracking for 1–2 DEX testnets
+* Generate and verify basic SL attestations
+* Minimal UI for wallet connection & attestation requests
 
-F1. Streak Tracker: hitung durasi LP harian/mingguan per pool.
+### MVP (4–8 weeks)
 
-F2. Threshold Attestation: terbitkan attestation “LP ≥ X selama Y hari”.
+* Multi-pool & multi-chain support
+* Verifier SDK + demo rewards claim page
+* Automated snapshots & monitoring, stress-tested at scale
 
-F3. Partner Verifier: lib kecil untuk protokol lain mengecek attestation dan memberikan fee rebate / allowlist / bonus.
+---
 
-Timeline
-PoC (2–4 weeks)
+## Innovation
 
-Integrasi pembacaan posisi LP untuk 1–2 DEX testnet
+* **Portable LP Reputation:** Brings “consistent LP” reputation across protocols without requiring KYC.
+* **Privacy-Aware:** Uses attestations/thresholds without revealing the exact LP values.
+* **Sybil-Resistant Incentives:** Rewards are tied to sustained liquidity, not short-term farming.
 
-Generate & verifikasi SL attestation dasar
+---
 
-Minimal UI untuk connect wallet & request attestation
+## Contact
 
-MVP (4–8 weeks)
+* **Preferred:** Discord DM (ID: 458584863885230083)
+* **Updates:** GitHub repo issues/PRs + Soundness Discord build channel
 
-Multi-pool & multi-chain support
+---
 
-Verifier SDK + halaman demo claim rewards
+## Checklist before submitting
 
-Otomasi rotasi/snapshot + monitoring, uji beban ringan
+* [x] All fields completed
+* [x] GitHub username matches PR author (`naonyeer`)
+* [x] SL integration explained (attestations + verifier, optional threshold proofs)
+* [x] Realistic timeline (PoC 2–4 weeks, MVP 4–8 weeks)
 
-Innovation
-
-Portable LP reputation: reputasi “konsistensi LP” bisa dibawa lintas protokol tanpa KYC.
-
-Privacy-aware: gunakan attestation/threshold, tanpa buka nilai LP persis.
-
-Sybil-resistant insentives: protokol memberi hadiah pada sustained liquidity, bukan farming sesaat.
-
-Contact
-
-Preferred: Discord DM (ID: 458584863885230083)
-
-Updates: issue/PR di repo project + channel build di Soundness Discord.
-
-Checklist before submitting
-
- All fields completed
-
- GitHub username matches PR author (naonyeer)
-
- SL integration explained (attestation + verifier, optional threshold proof)
-
- Realistic timeline (PoC 2–4w, MVP 4–8w)
+---
